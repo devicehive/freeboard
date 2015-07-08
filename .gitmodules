@@ -1,0 +1,3 @@
+[submodule "plugins/devicehive-freeboard-datasource"]
+	path = plugins/devicehive-freeboard-datasource
+	url = git@github.com:devicehive/devicehive-freeboard-datasource.git
