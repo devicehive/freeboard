@@ -37,14 +37,24 @@
 
                 "plugins/freeboard/freeboard.datasources.js",
                 "plugins/freeboard/freeboard.widgets.js",
-                "examples/plugin_example.js",
+
+                "plugins/devicehive-freeboard-datasource/src/index.js",
 
                 // *** Load more plugins here ***
                 function(){
                     $(function()
                     { //DOM Ready
-						freeboard.setAssetRoot("/freeboard-ui/");
+						//freeboard.setAssetRoot("/freeboard-ui/");
                         freeboard.initialize(true);
+
+                        var hashpattern = window.location.hash.match(/(&|#)source=([^&]+)/);
+                        if (hashpattern !== null) {
+                            $.getJSON(hashpattern[2], function(data) {
+                                freeboard.loadDashboard(data, function() {
+                                    freeboard.setEditing(false);
+                                });
+                            });
+                        }
                     });
                 });
     </script>
